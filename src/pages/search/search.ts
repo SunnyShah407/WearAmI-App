@@ -13,7 +13,7 @@ import { Items } from '../../providers/providers';
   templateUrl: 'search.html'
 })
 export class SearchPage {
-  
+
   currentItems: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public items: Items) { }

@@ -17,18 +17,17 @@
   "TUTORIAL_SKIP_BUTTON" : "Skip",
   "TUTORIAL_CONTINUE_BUTTON" : "Continue",
 
-  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Ionic Super Starter",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Ionic Super Starter</b> is a fully-featured Ionic starter with many pre-built pages and best practices.",
+  "TUTORIAL_SLIDE1_TITLE": "Welcome to WearAmI!",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "<b>WearAmI</b> is a highly discrete wearable GPS for your precious children.",
 
-  "TUTORIAL_SLIDE2_TITLE": "How to use the Super Starter",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Assemble the various page types you want and remove the ones you don't. We've provided many common mobile app page layouts, like login and signup pages, tabs, and this tutorial page.",
+  "TUTORIAL_SLIDE2_TITLE": "How to use WearAmI",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Access your kids' profiles, their location, and account settings with this easy to use app.",
 
-  "TUTORIAL_SLIDE3_TITLE": "Getting Started",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "Need help? Check out the Super Starter README for a full tutorial",
 
-  "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
 
-  "WELCOME_INTRO" : "The starting point for your next great Ionic app",
+  "TUTORIAL_SLIDE4_TITLE": "Ready to Go?",
+
+  "WELCOME_INTRO" : "Keep your kids safe and your mind at ease.",
 
   "SETTINGS_TITLE": "Settings",
   "SETTINGS_OPTION1": "Option 1",
