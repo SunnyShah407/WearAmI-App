@@ -20,6 +20,8 @@ import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
+//import { DevicesPage } from '../pages/devices/devices';
+import { BluetoothPage } from '../pages/bluetooth/bluetooth';
 
 import { Api } from '../providers/api';
 import { Items } from '../mocks/providers/items';
@@ -30,6 +32,8 @@ import { Camera } from '@ionic-native/camera';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
+import { BLE } from '@ionic-native/ble';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -71,6 +75,8 @@ export function provideSettings(storage: Storage) {
     SignupPage,
     TabsPage,
     TutorialPage,
+    BluetoothPage,
+    //DevicesPage,
     WelcomePage
   ],
   imports: [
@@ -102,6 +108,7 @@ export function provideSettings(storage: Storage) {
     SignupPage,
     TabsPage,
     TutorialPage,
+    BluetoothPage,
     WelcomePage
   ],
   providers: [
@@ -110,7 +117,9 @@ export function provideSettings(storage: Storage) {
     User,
     Camera,
     GoogleMaps,
+    BluetoothSerial,
     SplashScreen,
+    BLE,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development

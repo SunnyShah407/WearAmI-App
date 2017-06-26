@@ -4,6 +4,9 @@ import { SettingsPage } from './settings/settings';
 import { TabsPage } from './tabs/tabs';
 import { TutorialPage } from './tutorial/tutorial';
 import { MapPage } from './map/map';
+import { BluetoothPage } from './bluetooth/bluetooth';
+
+//import { DevicesPage } from './devices/devices';
 // The page the user lands on after opening the app and without a session
 export const FirstRunPage = TutorialPage;
 
@@ -15,3 +18,4 @@ export const MainPage = TabsPage;
 export const Tab1Root = ListMasterPage;
 export const Tab2Root = MapPage;
 export const Tab3Root = SettingsPage;
+export const Tab4Root = BluetoothPage;
