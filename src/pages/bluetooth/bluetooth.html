@@ -7,12 +7,36 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>bluetooth</ion-title>
+    <ion-title>Bluetooth</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <!--<ion-card>-->
+  <ion-list>
+
+    <ion-card *ngFor="let device of devices">
+      <ion-card-content>
+        <h2><strong>name:</strong> {{device.name}}</h2>
+        <h2><strong>id:</strong> {{device.id}}</h2>
+        <button ion-button  (click)="selectConnect(device)">Connect!</button>
+        <button ion-button (click)="testConnection(device)">Am I connected?</button>
+      </ion-card-content>
+
+  </ion-card>
+</ion-list>
+<ion-list>
+    <ion-card>
+    <!--<ion-card *ngFor="let notification of notifications">-->
+      <ion-card-content>
+      <h2>yo!</h2>
+      <h2>{{notification}}</h2>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+<!--</ion-card>-->
+
 
 </ion-content>
