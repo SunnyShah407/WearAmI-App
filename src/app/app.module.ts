@@ -35,6 +35,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { BLE } from '@ionic-native/ble';
+//import { Storage } from '@ionic/storage';
+//import { NativeStorage } from '@ionic-native/nativestorage';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -118,6 +120,7 @@ export function provideSettings(storage: Storage) {
     User,
     Camera,
     GoogleMaps,
+    Storage,
     BluetoothSerial,
     Geolocation,
     SplashScreen,

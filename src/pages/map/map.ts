@@ -4,6 +4,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { BLE } from '@ionic-native/ble';
 
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the MapPage page.
  *
@@ -26,9 +27,10 @@ export class MapPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   coords: any;
+  notifications: any;
 
-  constructor(public navCtrl: NavController, public geolocation: Geolocation, private ble: BLE) {
-
+  constructor(public navCtrl: NavController, public geolocation: Geolocation, private ble: BLE, public storage: Storage) {
+    this.notifications = [];
   }
 
   ionViewDidLoad(){
@@ -56,6 +58,7 @@ export class MapPage {
 
   addMarker(){
       //this.coords = [];
+      this.addMarkerReal(this.notifications[this.notifications.length]);
       this.ble.scan([], 60).subscribe(
           device => {
             //console.log("Found device: " + JSON.stringify(device));
@@ -65,29 +68,31 @@ export class MapPage {
             this.ble.connect('EF:9F:EE:BE:A8:42').subscribe(
              peripheralData => {
                //this.notifications = ["first notification!"];
-               console.log("Connect:" + JSON.stringify(peripheralData));
+                 () => {
+                   let marker = new google.maps.Marker({
+                     map: this.map,
+                     animation: google.maps.Animation.DROP,
+                     position: new google.maps.LatLng(42.35587,-71.09828)
+                   });
+                 }
+                 console.log("Connect:" + JSON.stringify(peripheralData));
                  this.ble.startNotification('EF:9F:EE:BE:A8:42', '6e400001-b5a3-f393-e0a9-e50e24dcca9e', '6e400003-b5a3-f393-e0a9-e50e24dcca9e').subscribe(function (notificationData){
                    console.log("Notification:"+ String.fromCharCode.apply(null, new Uint8Array(notificationData)));
-                   this.notifications = [];
+                   //this.notifications = [];
+                  this.storage.set('notification', String.fromCharCode.apply(null, new Uint8Array(notificationData)));
+
+
                    this.notifications.push(String.fromCharCode.apply(null, new Uint8Array(notificationData)));
                    console.log(this.notifications);
-                   this.ble.read('EF:9F:EE:BE:A8:42', '6e400001-b5a3-f393-e0a9-e50e24dcca9e', '6e400003-b5a3-f393-e0a9-e50e24dcca9e').then(function (data){
+                   this.addMarkerReal(this.notifications[this.notifications.length]);
+                   /*this.ble.read('EF:9F:EE:BE:A8:42', '6e400001-b5a3-f393-e0a9-e50e24dcca9e', '6e400003-b5a3-f393-e0a9-e50e24dcca9e').then(function (data){
                      //console.log("READ:" + String.fromCharCode.apply(null, new Uint8Array(data)));
                      console.log("Read" + JSON.stringify(data));
 
-                     let marker = new google.maps.Marker({
-                       map: this.map,
-                       animation: google.maps.Animation.DROP,
-                       position: new google.maps.LatLng(42.35587,-71.09828)
-                     });
-
-                     let content = "<h4>Information!</h4>";
-
-                     this.addInfoWindow(marker, content);
 
                    }, function(error) {
                      console.log("Error Read" + JSON.stringify(error));
-                   });
+                   });*/
                  }, function(error){
                    console.log("Error Notification" + JSON.stringify(error));
                  });
@@ -95,6 +100,7 @@ export class MapPage {
            error => console.log("Error Connecting" + JSON.stringify(error))
            );
           },
+
           err => {
             console.log("Error occurred during this.ble scan: " + JSON.stringify(err));
           },
@@ -105,7 +111,7 @@ export class MapPage {
 
   }
 
-  addInfoWindow(marker, content){
+  /*addInfoWindow(marker, content){
 
     let infoWindow = new google.maps.InfoWindow({
       content: content
@@ -114,6 +120,23 @@ export class MapPage {
     google.maps.event.addListener(marker, 'click', () => {
       infoWindow.open(this.map, marker);
     });
+
+  }*/
+
+  addMarkerReal(notificationData){
+    console.log(notificationData);
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: new google.maps.LatLng(42.35587,-71.09828)
+    });
+
+    this.storage.get('notification').then((val) => {
+      console.log("Stored value:" + val);
+    });
+    //let content = "<h4>Information!</h4>";
+
+  //  this.addInfoWindow(marker, content);
 
   }
 
